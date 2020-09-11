@@ -9,6 +9,7 @@ import arbolbinario.modelo.excepciones.ArbolBinarioException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -179,7 +180,7 @@ public class ArbolBinario {
         }
     }
       
-       public ArrayList getHojas() {
+       public ArrayList<String> obtenerHojas() {
         ArrayList l = new ArrayList();
         getHojas(this.raiz, l);
         return (l);
@@ -207,11 +208,10 @@ public class ArbolBinario {
         }
         
     }
-    
+     
     public boolean buscar(int x) {
         return (buscar(this.raiz, x));
-
-
+       
     }
 
     private boolean buscar(Nodo nodo, int x) {
@@ -226,6 +226,7 @@ public class ArbolBinario {
         } else {
             return (true);
         }
+     
     }
     public int padre(int info) {
         if (info == 0 || this.raiz == null) {

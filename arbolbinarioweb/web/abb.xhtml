@@ -11,12 +11,40 @@
         <p:diagram id="pnlArbol" value="#{arbolBinarioControlador.model}" style="height:400px" styleClass="ui-widget-content" />
 
         <h:form>
+            <!-- Div 1 -->
             <p:panel header="Panel Nuevo Nodo">
                 <p:outputLabel value="Dato:"/>
                 <p:inputText required="true" value="#{arbolBinarioControlador.dato}"/>
-                <p:commandButton ajax="false"  value="Agregar" action="#{arbolBinarioControlador.adicionarNodo()}"
+               <!-- Agregar --> 
+                <p:commandButton ajax="false" 
+                                 value="Agregar" 
+                                 action="#{arbolBinarioControlador.adicionarNodo()}"
                                  update="@all" />
+                
+               <!-- Borrar --> 
+                <p:commandButton ajax="false" 
+                                 value="Borrar" 
+                                 update="@all" 
+                                 action="#{arbolBinarioControlador.arbol.borrar(x)}"/>
+                
+               <!-- Buscar --> 
+                <p:commandButton value="Buscar"
+                                 ajax="false" 
+                                 update="@all"
+                                 action="#{arbolBinarioControlador.arbol.buscar(x)}"/>
                
+               <!-- Buscar Padre -->  
+                <p:commandButton value="Buscar Padre"
+                                 update="@all"
+                                 ajax="false"
+                                 action="#{arbolBinarioControlador.arbol.darPadre(hijo)}"/>
+               
+                <br/>
+                <br/>
+                
+             <!-- Div 2 -->   
+                
+               <!-- InOrden -->
                 <p:commandButton id="inOrdenBtn" value="InOrden" type="button" />
                 <p:overlayPanel id="inOrdenPanel" for="inOrdenBtn" hideEffect="fade" dynamic="true" style="width:600px" modal="true">
                     <p:dataTable var="nodo" value="#{arbolBinarioControlador.arbol.inOrden()}" rows="10" paginator="true">
@@ -26,6 +54,7 @@
                     </p:dataTable>
                 </p:overlayPanel>
                 
+                <!-- PreOrden -->
                 
                 <p:commandButton id="preOrdenBtn" value="PreOrden" type="button" />
                 <p:overlayPanel id="preOrdenPanel" for="preOrdenBtn" hideEffect="fade" dynamic="true" style="width:600px" modal="true">
@@ -36,15 +65,17 @@
                     </p:dataTable>
                 </p:overlayPanel>
                 
+               <!-- PostOrden -->
                 <p:commandButton id="postOrdenBtn" value="PostOrden" type="button" />
                 <p:overlayPanel id="postOrdenPanel" for="postOrdenBtn" hideEffect="fade" dynamic="true" style="width:600px" modal="true">
                     <p:dataTable var="nodo" value="#{arbolBinarioControlador.arbol.postOrden()}" rows="10" paginator="true">
                         <p:column headerText="PostOrden">
                             <h:outputText value="#{nodo}" />
                         </p:column>
-                        
                     </p:dataTable>
                 </p:overlayPanel>
+                
+                <!-- Por Niveles -->
                 
                  <p:commandButton id="porNivelesBtn" value="Por Niveles" type="button" />
                 <p:overlayPanel id="porNivelesPanel" for="porNivelesBtn" hideEffect="fade" dynamic="true" style="width:600px" modal="true">
@@ -54,30 +85,33 @@
                         </p:column>
                     </p:dataTable>
                 </p:overlayPanel>
-                 
+                
+                <!-- Nivel Ordenado --> 
+                
                  <p:commandButton id="nivelOrdenadoBtn" value="Nivel Ordenado" type="button" />
                 <p:overlayPanel id="nivelOrdenadoPanel" for="nivelOrdenadoBtn" hideEffect="fade" dynamic="true" style="width:600px" modal="true">
-                    <p:dataTable var="nodo" value="#{arbolBinarioControlador.arbol.imprimirNivel()}" rows="10" paginator="true">
+                    <p:dataTable var="nodo" value="#{arbolBinarioControlador.arbol.impNiveles()}" rows="10" paginator="true">
                         <p:column headerText="Nivel Ordenado">
                             <h:outputText value="#{nodo}" />
                         </p:column>
-                        
                     </p:dataTable>
                 </p:overlayPanel>
                  
-                <p:commandButton id="hojasBtn" value="Hojas" type="button" />
+                 <!-- Hojas -->  
+                 
+                <p:commandButton id="hojasBtn" value="Hojas" type="button"  />
+                
                 <p:overlayPanel id="hojasPanel" for="hojasBtn" hideEffect="fade" dynamic="true" style="width:600px" modal="true">
-                    <p:dataTable var="nodo" value="#{arbolBinarioControlador.arbol.hojas()}" rows="10" paginator="true">
+                    <p:dataTable var="nodo" value="#{arbolBinarioControlador.arbol.obtenerHojas()}" rows="10" paginator="true">
                         <p:column headerText="Hojas">
                             <h:outputText value="#{nodo}" />
                         </p:column>
-                        
                     </p:dataTable>
                 </p:overlayPanel>
                 
-                <p:commandButton value="Borrar" action="#{arbolBinarioControlador.arbol.borrar(x)}"/>
+                <!-- Hojas -->  
                  
-                
+                <br/>
                 
             </p:panel>
         </h:form>
@@ -86,14 +120,10 @@
                 <p:inputTextarea required="true" cols="40" value="#{arbolBinarioControlador.datoscsv}"/>
                 <p:commandButton value="LLenar Arbol" action="#{arbolBinarioControlador.extraerDatos()}"
                                  update="@all" ajax="false"/>
-                <p:commandButton value="Buscar" action="#{arbolBinarioControlador.arbol.buscar(x)}"/>
-                <p:commandButton value="Buscar Padre" action="#{arbolBinarioControlador.arbol.darPadre(hijo)}"/>
                 <p:commandButton value="Podar" action="#{arbolBinarioControlador.arbol.podar()}"/>
                 <p:commandButton value="Borrar Mayor" action="#{arbolBinarioControlador.arbol.borrarMayor()}"/>
                 <p:commandButton value="Borrar Menor" action="#{arbolBinarioControlador.arbol.borrarMenor()}"/>
                 <p:commandButton value="Cambiar Valor" action="#{arbolBinarioControlador.arbol.cambiar()}"/>
-                
-                
             </p:panel>
         </h:form>
         <h:form>
