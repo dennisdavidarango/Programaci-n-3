@@ -241,6 +241,16 @@ public class ArbolBinarioControlador implements Serializable {
             arbol.borrarMayor();
             pintarArbol();
         }
+        
+        public void borrar(){
+         arbol.borrar(dato);
+         pintarArbol();
+        }
+        
+        public void buscar(){
+            arbol.buscar(dato);
+            pintarArbol();
+        }
 
         public void borrarMenor(){
 

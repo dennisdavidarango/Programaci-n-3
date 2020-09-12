@@ -37,7 +37,7 @@
                         <p:inputText required="true" value="#{arbolBinarioControlador.dato}"/>
                         <p:commandButton ajax="false" 
                                          value="Borrar" 
-                                         action="#{arbolBinarioControlador.arbol.borrar(x)}"
+                                         action="#{arbolBinarioControlador.borrar()}"
                                          update="@all" />
                 </p:dialog>        
                 
@@ -50,8 +50,9 @@
                         <p:inputText required="true" value="#{arbolBinarioControlador.dato}"/>
                         <p:commandButton ajax="false" 
                                          value="Buscar" 
-                                         action="#{arbolBinarioControlador.arbol.buscar(x)}"
-                                         update="@all" />
+                                         action="#{arbolBinarioControlador.buscar()}"
+                                         update="@all"
+                                        />
                     </h:panelGrid>
                 </p:dialog> 
                
@@ -136,6 +137,16 @@
                 <!-- Podar -->
                 <p:commandButton value="Podar" update="@all" ajax="false" action="#{arbolBinarioControlador.podar()}"/>
                 
+                <p:commandButton value="Cambiar Valor" type="button" onclick="PF('dlg1').show();" />
+                <p:dialog header="Cambiar Valor" widgetVar="dlg1" minHeight="40">
+                    <h:outputText value="Valor a Cambiar: " />
+                        <p:inputText required="true" value="#{arbolBinarioControlador.dato}"/>
+                        <p:commandButton ajax="false" 
+                                         value="Cambiar" 
+                                         action="#{arbolBinarioControlador.cambiarValor()}"
+                                         update="@all" />
+                </p:dialog> 
+                
                   
 
                 <br/>
@@ -151,17 +162,7 @@
                                  update="@all" ajax="false"/>
                 
 
-                <p:commandButton value="Cambiar Valor" type="button" onclick="PF('dlg1').show();" />
-                <p:dialog header="Cambiar Valor" widgetVar="dlg1" minHeight="40">
-                    <h:outputText value="Valor a Cambiar: " />
-                        <p:inputText required="true" value="#{arbolBinarioControlador.dato}"/>
-                        <h:outputText value="Cambiar por: " />
-                        <p:inputText required="true" value="#{arbolBinarioControlador.dato}"/>
-                        <p:commandButton ajax="false" 
-                                         value="Cambiar" 
-                                         action="#{arbolBinarioControlador.cambiarValor()}"
-                                         update="@all" />
-                </p:dialog> 
+                
                 
             </p:panel>
         </h:form>
