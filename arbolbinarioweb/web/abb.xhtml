@@ -22,11 +22,19 @@
                                  update="@all" />
                 
                 
-                <!-- Borrar 2 -->
+               
+               <!-- Buscar Padre -->  
+                <p:commandButton value="Buscar Padre"
+                                 update="@all"
+                                 ajax="false"
+                                 action="#{arbolBinarioControlador.arbol.darPadre(hijo)}"/>
                 
-                <p:commandButton value="Borrar " update="displayBorrar" oncomplete="PF('dlg').show()" />
+                <!-- Borrar  -->
+                
+                <p:commandButton value="Borrar" update="Borrar" oncomplete="PF('dlg').show()" />
                 <p:dialog header="Borrar" widgetVar="dlg" showEffect="fold" hideEffect="fold">
-                    <h:panelGrid id="displayBorrar" columns="2" cellpadding="5">
+                    
+                    <h:panelGrid id="Borrar" columns="2" cellpadding="5">
                         <h:outputText value="Valor a borrar: " />
                         <p:inputText required="true" value="#{arbolBinarioControlador.dato}"/>
                         <p:commandButton ajax="false" 
@@ -38,9 +46,9 @@
                 
                 
                <!-- Buscar --> 
-               <p:commandButton value="Buscar" update="displayBuscar" oncomplete="PF('dlg').show()" />
+               <p:commandButton value="Buscar" update="Buscar" oncomplete="PF('dlg').show()" />
                 <p:dialog header="Buscar" widgetVar="dlg" showEffect="fold" hideEffect="fold">
-                    <h:panelGrid id="displayBuscar" columns="2" cellpadding="5">
+                    <h:panelGrid id="Buscar" columns="2" cellpadding="5">
                         <h:outputText value="Valor a Buscar: " />
                         <p:inputText required="true" value="#{arbolBinarioControlador.dato}"/>
                         <p:commandButton ajax="false" 
@@ -48,13 +56,7 @@
                                          action="#{arbolBinarioControlador.arbol.buscar(x)}"
                                          update="@all" />
                     </h:panelGrid>
-                </p:dialog>        
-               
-               <!-- Buscar Padre -->  
-                <p:commandButton value="Buscar Padre"
-                                 update="@all"
-                                 ajax="false"
-                                 action="#{arbolBinarioControlador.arbol.darPadre(hijo)}"/>
+                </p:dialog> 
                
                 <br/>
                 <br/>
@@ -126,9 +128,22 @@
                     </p:dataTable>
                 </p:overlayPanel>
                 
-                <!-- Hojas -->  
-                 
+                <!-- Borrar Mayor -->
+                
+                <p:commandButton value="Borrar Mayor" update="@all" ajax="false" action="#{arbolBinarioControlador.borrarMayor()}"/>
+                
+                <!-- Borrar Menor -->
+                
+                <p:commandButton value="Borrar Menor" update="@all" ajax="false" action="#{arbolBinarioControlador.borrarMenor()}"/>
+                
+                <!-- Podar -->
+                <p:commandButton value="Podar" update="@all" ajax="false" action="#{arbolBinarioControlador.podar()}"/>
+                
+                  
+
                 <br/>
+                
+               
                 
             </p:panel>
         </h:form>
@@ -137,10 +152,25 @@
                 <p:inputTextarea required="true" cols="40" value="#{arbolBinarioControlador.datoscsv}"/>
                 <p:commandButton value="LLenar Arbol" action="#{arbolBinarioControlador.extraerDatos()}"
                                  update="@all" ajax="false"/>
-                <p:commandButton value="Podar" ajax="false" update="@all" action="#{arbolBinarioControlador.arbol.podar()}"/>
-                <p:commandButton value="Borrar Mayor" action="#{arbolBinarioControlador.arbol.borrarMayor()}"/>
-                <p:commandButton value="Borrar Menor" action="#{arbolBinarioControlador.arbol.borrarMenor()}"/>
-                <p:commandButton value="Cambiar Valor" action="#{arbolBinarioControlador.arbol.cambiar()}"/>
+                
+                
+                
+                <p:commandButton value="Cambiar Valor" update="CambiarValor" oncomplete="PF('dlg').show()" />
+                <p:dialog header="Cambiar" widgetVar="dlg" showEffect="fold" hideEffect="fold">
+                    <h:panelGrid id="CambiarValor" columns="2" cellpadding="5">
+                        <h:outputText value="Valor a Cambiar: " />
+                        <p:inputText required="true" value="#{arbolBinarioControlador.dato}"/>
+                        <h:outputText value="Cambiar por: " />
+                        <p:inputText required="true" value="#{arbolBinarioControlador.dato}"/>
+                        <p:commandButton ajax="false" 
+                                         value="Cambiar" 
+                                         action="#{arbolBinarioControlador.cambiarValor()}"
+                                         update="@all" />
+                    </h:panelGrid>
+                </p:dialog> 
+                
+                       
+               
             </p:panel>
         </h:form>
         <h:form>

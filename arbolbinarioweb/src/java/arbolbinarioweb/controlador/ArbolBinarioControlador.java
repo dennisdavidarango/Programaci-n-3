@@ -236,6 +236,28 @@ public class ArbolBinarioControlador implements Serializable {
 
     }
 
+        public void borrarMayor(){
+
+            arbol.borrarMayor();
+            pintarArbol();
+        }
+
+        public void borrarMenor(){
+
+            arbol.borrarMenor();
+            pintarArbol();
+        }
+
+        public void podar(){
+           arbol.podar();
+           pintarArbol();
+        }
+
+        public void cambiarValor(){
+          arbol.cambiar();
+          pintarArbol();
+        }
+
     private void pintarArbolTerminados(Nodo reco, DefaultDiagramModel model, Element padre, int x, int y) {
 
         if (reco != null) {
