@@ -387,10 +387,26 @@ public class ArbolBinario {
 
     private void cambiar(Nodo reco, int nivel) {
         if (reco != null) {
-            reco.setDato(reco.getDato() * 3);
+            reco.setDato(reco.getDato() * 2);
             cambiar(reco.getIzquierda(), nivel + 1);
             //System.out.print(reco.getDato() + " Nivel: (" + nivel + ") ,");
             cambiar(reco.getDerecha(), nivel + 1);
+        }
+    }
+    
+    
+    public boolean multiplicarArbol( int multiplicar) {
+            multiplicarArbol(raiz, 1, multiplicar);
+            //System.out.println();
+            return true;
+    }
+    
+     private void multiplicarArbol(Nodo reco, int nivel, int multiplicar) {
+        if (reco != null) {
+            reco.setDato(reco.getDato() * multiplicar);
+             multiplicarArbol(reco.getIzquierda(), nivel + 1, multiplicar);
+            //System.out.print(reco.getDato() + " Nivel: (" + nivel + ") ,");
+             multiplicarArbol(reco.getDerecha(), nivel + 1, multiplicar);
         }
     }
     
