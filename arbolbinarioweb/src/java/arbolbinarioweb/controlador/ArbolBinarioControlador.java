@@ -43,6 +43,46 @@ public class ArbolBinarioControlador implements Serializable {
     private String datoscsv = "18,15,13,17,8,14,-8,10,59,28,80,78,90";
     private int terminado;
     private ArbolBinario arbolTerminados = new ArbolBinario();
+    
+    private String datobuscar;
+    
+    private int datoPromediar;
+
+    private int datoSumar;
+    
+    private String textoEnviar;
+
+    public String getTextoEnviar() {
+        return textoEnviar;
+    }
+
+    public void setTextoEnviar(String textoEnviar) {
+        this.textoEnviar = textoEnviar;
+    }
+
+    public int getDatoPromediar() {
+        return datoPromediar;
+    }
+
+    public void setDatoPromediar(int datoPromediar) {
+        this.datoPromediar = datoPromediar;
+    }
+    
+    public int getDatoSumar() {
+        return datoSumar;
+    }
+
+    public void setDatoSumar(int datoSumar) {
+        this.datoSumar = datoSumar;
+    }
+
+    public String getDatobuscar() {
+        return datobuscar;
+    }
+
+    public void setDatobuscar(String datobuscar) {
+        this.datobuscar = datobuscar;
+    }
 
     public ArbolBinario getArbolTerminados() {
         return arbolTerminados;
@@ -305,6 +345,57 @@ public class ArbolBinarioControlador implements Serializable {
             pintarArbolTerminados(reco.getIzquierda(), model, elementHijo, x - 5, y + 5);
             pintarArbolTerminados(reco.getDerecha(), model, elementHijo, x + 5, y + 5);
         }
+    }
+    
+    public void promediar() {
+        if (arbol.getRaiz() != null) {
+            try {
+                ///Receta promediar
+                // buscar nodo  utilizando como parametro datopromediar
+                // contar a partir de un nodo
+                // sumar a partir de ese nodo
+                // calcular el promedio
+                // mostrar
+                Nodo nodoencontrado = arbol.buscarNodo(Integer.parseInt(datobuscar), arbol.getRaiz());
+                //Encontró un arbol
+                float cont = arbol.contarNodos(nodoencontrado);
+                float suma = arbol.sumarNodos(nodoencontrado);
+                JsfUtil.addSuccessMessage("El árbol tiene " + cont + " elementos,\n"
+                        + " suman " + suma + "\n, Promedian " + (suma / cont));
+
+            } catch (ArbolBinarioException ex) {
+                 JsfUtil.addErrorMessage(ex.getMessage());
+               
+            }
+
+        } else {
+            JsfUtil.addErrorMessage("No puede promediar un árbol vacío");
+        }
+    }
+    
+    public void sumarNodo() {
+        
+        try {
+            Nodo nodoEncontrado= arbol.buscarNodo(datoSumar, arbol.getRaiz());
+            JsfUtil.addSuccessMessage("El nodo suma: "+
+                    arbol.sumarNodos(nodoEncontrado));
+        } catch (ArbolBinarioException ex) {
+             JsfUtil.addErrorMessage(ex.getMessage());
+        }
+    }
+    
+    public String irBeanSuma()
+    {
+        //Cálculos, bds, enviar correos
+        ArbolSumaControlador beanSuma= (ArbolSumaControlador) 
+                JsfUtil.getManagedBean("arbolSumaControlador");
+        
+        beanSuma.setTextoHeader(textoEnviar);
+        
+        //beanSuma.adicionarNodo(Integer.parseInt(textoEnviar));
+        beanSuma.llenarArbolsumas(arbol);
+        
+        return "abbsuma";
     }
 
 }
