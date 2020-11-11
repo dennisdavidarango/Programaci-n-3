@@ -486,5 +486,9 @@ public class ArbolBinario {
              multiplicarArbol(reco.getDerecha(), nivel + 1, multiplicar);
         }
     }
+
+    public void adicionarNodo(String dato, Nodo raiz) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
