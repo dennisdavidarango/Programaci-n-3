@@ -14,6 +14,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
 import javax.ws.rs.core.MediaType;
 import proyectoarboln.modelo.Empleado;
+import proyectoarboln.modelo.Ciudad;
+
 
 /**
  * REST Web Service
@@ -22,7 +24,6 @@ import proyectoarboln.modelo.Empleado;
  */
 @Path("empleadows")
 public class WsEmpleado {
-
     @Context
     private UriInfo context;
 
@@ -40,7 +41,9 @@ public class WsEmpleado {
     @Produces(MediaType.APPLICATION_JSON)
     public Empleado getJson() {
         //TODO return proper representation object
+
         throw new UnsupportedOperationException();
+
     }
 
     /**
