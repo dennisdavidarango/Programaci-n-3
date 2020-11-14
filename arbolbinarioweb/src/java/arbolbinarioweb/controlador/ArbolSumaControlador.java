@@ -24,6 +24,7 @@ import org.primefaces.model.diagram.connector.StraightConnector;
 import org.primefaces.model.diagram.endpoint.DotEndPoint;
 import org.primefaces.model.diagram.endpoint.EndPointAnchor;
 
+
 /**
  *
  * @author carloaiza
@@ -36,6 +37,8 @@ public class ArbolSumaControlador implements Serializable {
     private DefaultDiagramModel model;  
     private String textoHeader;
     private String numSeleccionado;
+    
+  
     /**
      * Creates a new instance of ArbolSumaControlador
      */
